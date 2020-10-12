@@ -6,21 +6,12 @@ node {
     def app
     def commit_id
 
-    stage('Preparation') {
 
-           checkout scm
-
-    }
 
     stage('run-migration') {
 
          sh " echo I am wating for "
 
      }
-
-
-
-
-
 
  }
