@@ -1,17 +1,13 @@
-node {
+pipeline {
+    agent any
 
-    def buildNumber = env.BUILD_NUMBER
-    def workspace = env.WORKSPACE
-    def buildUrl = env.BUILD_URL
-    def app
-    def commit_id
-
-
-
-    stage('run-migration') {
-
-         sh " echo I am wating for "
-
-     }
-
- }
+    stages {
+        stage("Env Variables") {
+            steps {
+                echo "The build number is ${env.BUILD_NUMBER}"
+                echo "You can also use \${BUILD_NUMBER} -> ${BUILD_NUMBER}"
+                sh 'echo "I can access $BUILD_NUMBER in shell command as well."'
+            }
+        }
+    }
+}
