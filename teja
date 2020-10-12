@@ -1,0 +1,26 @@
+node {
+
+    def buildNumber = env.BUILD_NUMBER
+    def workspace = env.WORKSPACE
+    def buildUrl = env.BUILD_URL
+    def app
+    def commit_id
+
+    stage('Preparation') {
+
+           checkout scm
+
+    }
+
+    stage('run-migration') {
+
+         sh " echo I am wating for "
+
+     }
+
+
+
+
+
+
+ }
