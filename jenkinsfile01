@@ -1,25 +1,56 @@
 #!/usr/bin/env groovy
 pipeline {
-    agent { label 'mymaster' }
+    agent any
     stages {
         stage('Preparation') {
             steps {
+                //git clone http://root:Passw0rd@192.168.56.60:8085/root/etl1.5.git
                 sh '''
                 ls
-                rm -rf etl1.5
-                git clone http://root:Passw0rd@192.168.56.60:8085/root/etl1.5.git
-                cd etl1.5
-                git checkout develop
-                /usr/local/src/apache-maven/bin/mvn clean install
+                rm -rf JavaRepo
+                git clone https://github.com/Niranjan2211/JavaRepo.git
+                cd JavaRepo
+                git branch 
                 '''
             }
+        }
+        stage('Maven Build') {
             steps {
                 sh '''
                 pwd
-                ls
+                /usr/local/src/apache-maven/bin/mvn clean install
                 '''
             }
-            
         }
-    }
-}
+        stage('Sonarqube Scanner') {
+            steps {
+                echo 'Sonarqube Scanner....'
+            }
+        }
+		stage('Fortify Scan') {
+            steps {
+                echo 'Fortify Scan....'
+            }
+        }
+		stage('Copy artifacts') {
+            steps {
+                echo 'Copy artifacts....'
+            }
+        }
+		stage('Deploy in Dev Environemnt') {
+            steps {
+                echo 'Deploying in Dev Environemnt....'
+            }
+        }
+		stage('Deploy in UAT Environemnt') {
+            steps {
+                echo 'Deploying in UAT Environemnt....'
+            }
+        }
+		stage('Deploy in Prod Environemnt') {
+            steps {
+                echo 'Build 12 ....'
+            }
+        }
+	} // stage 14
+} //pipeline

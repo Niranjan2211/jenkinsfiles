@@ -1,13 +1,6 @@
 #!/usr/bin/env groovy
 pipeline {
     agent any
-    environment {
-        file_listener="dgi.filelistener"
-        file_processor="dgi.fileprocessor"
-        metadata_contentvalidator="dgi.metadatacontentvalidator"
-        json_formatter="dgi.jsonformatter"
-		}
-
     stages {
         stage('Preparation') {
             steps {
