@@ -1,0 +1,25 @@
+#!/usr/bin/env groovy
+pipeline {
+    agent { label 'mymaster' }
+    stages {
+        stage('Preparation') {
+            steps {
+                sh '''
+                ls
+                rm -rf etl1.5
+                git clone http://root:Passw0rd@192.168.56.60:8085/root/etl1.5.git
+                cd etl1.5
+                git checkout develop
+                /usr/local/src/apache-maven/bin/mvn clean install
+                '''
+            }
+            steps {
+                sh '''
+                pwd
+                ls
+                '''
+            }
+            
+        }
+    }
+}
